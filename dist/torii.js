@@ -1245,7 +1245,10 @@ define("torii/redirect-handler",
         return new Ember.RSVP.Promise(function(resolve, reject){
           if (window.opener && window.opener.name === 'torii-opener') {
             postMessageFixed(window.opener, url);
-            window.close();
+            var windowPopup = window;
+            setTimeout(function(){
+              window.close();
+            },500)
           } else {
             reject('No window.opener');
           }
